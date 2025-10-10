@@ -1,102 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order_form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
     crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
     crossorigin="anonymous"></script>
-    
-    
 </head>
-<body>
-<div class="container mt-5 mb-5 p-4 bg-white shadow rounded">
+
+<body class="bg-light">
+  <div class="container mt-5 mb-5 p-4 bg-white shadow rounded">
     <h2 class="text-center mb-4">Order Form</h2>
 
-    <div id="confirmationMessage" class="alert alert-success text-center d-none" role="alert"></div>
+    
+    <form action="../srv/process_order.php" method="post" onsubmit="validateForm(event)"><!--utilitza funció de validació-->
 
-
-<form id="orderForm" class="p-4" action="../srv/process_order.php" method="post">
-    <div class="mb-3">
-    <label for="code" class="form-label">Order code</label>
-    <input type="text" class="form-control" id="code" name="code" placeholder="Write the order code">
-  </div>
-
-  <div class="mb-3">
-    <label for="name" class="form-label">Complete name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Write your name">
-  </div>
-
-  <div class="mb-3">
-    <label for="address" class="form-label">Address</label>
-    <input type="text" class="form-control" id="address" name="address" placeholder="Write your address">
-  </div>
-
-  <div class="mb-3">
-    <label for="phone_number" class="form-label">Phone number</label>
-    <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Write your phone number">
-  </div>
-
-  <div class="mb-3">
-    <label for="email" class="form-label">e-mail</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-  </div>
-
-  <h3 class="mb-4">Product List</h3>
-
-  <div class="vstack gap-3 mb-3">
-    <div class="form-check d-flex justify-content-between align-items-center border p-2 rounded">
-      <div>
-        <input class="form-check-input" type="checkbox" id="p1" name="products[p1]" value="1">
-        <label class="form-check-label" for="p1">Spaghetti Bolognese — 12,50 €</label>
+      <!-- Client data -->
+      <div class="mb-3">
+        <label for="code" class="form-label">Order code</label>
+        <input type="text" class="form-control" id="code" name="code" placeholder="Write the order code">
       </div>
-      <input type="number" id="q1" name="qty[p1]" class="form-control w-25" min="1" value="1">
-    </div>
 
-    <div class="form-check d-flex justify-content-between align-items-center border p-2 rounded">
-      <div>
-        <input class="form-check-input" type="checkbox" id="p2" name="products[p2]" value="1">
-        <label class="form-check-label" for="p2">Grilled Chicken Salad — 10,00 €</label>
+      <div class="mb-3">
+        <label for="name" class="form-label">Complete name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Write your name">
       </div>
-      <input type="number" id="q2" name="qty[p2]" class="form-control w-25" min="1" value="1">
-    </div>
 
-    <div class="form-check d-flex justify-content-between align-items-center border p-2 rounded">
-      <div>
-        <input class="form-check-input" type="checkbox" id="p3" name="products[p3]" value="1">
-        <label class="form-check-label" for="p3">Beef Tacos — 9,50 €</label>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" class="form-control" id="address" name="address" placeholder="Write your address">
       </div>
-      <input type="number" id="q3" name="qty[p3]" class="form-control w-25" min="1" value="1">
-    </div>
 
-    <div class="form-check d-flex justify-content-between align-items-center border p-2 rounded">
-      <div>
-        <input class="form-check-input" type="checkbox" id="p4" name="products[p4]" value="1">
-        <label class="form-check-label" for="p4">Vegetable Stir-Fry — 8,00 €</label>
+      <div class="mb-3">
+        <label for="phone_number" class="form-label">Phone number</label>
+        <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Write your phone number">
       </div>
-      <input type="number" id="q4" name="qty[p4]" class="form-control w-25" min="1" value="1">
-    </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+      </div>
+
+      <!-- Products -->
+      <h4 class="mt-4 mb-3">Product list</h4>
+
+      <div class="vstack gap-2 ms-3">
+
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <input type="checkbox" id="p1" name="products[p1]" value="Spaghetti Bolognese">
+            <label for="p1">Spaghetti Bolognese — 12.50 €</label>
+          </div>
+          <input type="number" name="qty[p1]" class="form-control w-25 ms-3" min="1" value="1">
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <input type="checkbox" id="p2" name="products[p2]" value="Grilled Chicken Salad">
+            <label for="p2">Grilled Chicken Salad — 10.00 €</label>
+          </div>
+          <input type="number" name="qty[p2]" class="form-control w-25 ms-3" min="1" value="1">
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <input type="checkbox" id="p3" name="products[p3]" value="Beef Tacos">
+            <label for="p3">Beef Tacos — 9.50 €</label>
+          </div>
+          <input type="number" name="qty[p3]" class="form-control w-25 ms-3" min="1" value="1">
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <input type="checkbox" id="p4" name="products[p4]" value="Vegetable Stir-Fry">
+            <label for="p4">Vegetable Stir-Fry — 8.00 €</label>
+          </div>
+          <input type="number" name="qty[p4]" class="form-control w-25 ms-3" min="1" value="1">
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex justify-content-center gap-3">
+        <button type="submit" class="btn btn-outline-success">Submit order</button>
+        <a href="/eCommerce/app/cli/operations_menu.html" class="btn btn-primary">Back to Menu</a>
+        <a href="/eCommerce/app/cli/index.html" class="btn btn-secondary">Home</a>
+        <button type="button" class="btn btn-warning" onclick="clearForm()">Clear form</button>
+      </div>
+        
+      <script>
+        //funció pel botó d'esborrar formulari
+        function clearForm() {
+          document.querySelector("form").reset();
+          alert("Form cleared!");
+        }
+      
+
+
+        //validació de dades abans d'emviar     
+        function validateForm(event) {
+          let message = "";
+
+
+        const code = document.getElementById("code").value.trim();
+        if (code === "") {
+            message += "You must write an order code.\n";
+          }
+
+        const name = document.getElementById("name").value.trim();
+        if (name === "") {
+            message += "Name cannot be empty.\n";
+          }
+
+        const address = document.getElementById("address").value.trim();
+        if (address === "") {
+            message += "Address cannot be empty.\n";
+          }
+
+        const phone = document.getElementById("phone_number").value.trim();
+        const phoneRegex = /^[0-9]{9}$/;
+          if (!phoneRegex.test(phone)) {
+            message += "Phone number must have 9 digits.\n";
+          }
+
+        const email = document.getElementById("email").value.trim();        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            message += "You must enter a valid email.\n";
+          }
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+          if (checkboxes.length === 0) {
+            message += "You must select at least one product.\n";
+          }
+
+        if (message !== "") {
+            alert(message);
+            event.preventDefault(); // Atura l’enviament
+        }  
+              
+      }
+      </script>
+
+    </form>
   </div>
-         
-
-  <div class="d-flex justify-content-between mt-3">      
-    <button type="submit" class="btn btn-outline-success">Submit Order</button>
-    <a href="operations_menu.html" class="btn btn-primary me-2">Back to Menu</a>  
-    <a href="index.html" class="btn btn-outline-secondary">Home</a>
-  </div>
-  
-</form>
-</div>
-
-<script>
-document.getElementById("orderForm").addEventListener("submit", function() {
-  document.getElementById("confirmationMessage").classList.remove("d-none");
-});
-</script>
-
 </body>
 </html>

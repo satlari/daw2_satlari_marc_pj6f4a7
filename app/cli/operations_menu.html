@@ -10,20 +10,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
     crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/operations_menu.css">
+    <link rel="stylesheet" href="/eCommerce/app/cli/css/operations_menu.css">
 </head>
 <body>
     <header class="main-header">
         <div>
-        <a href="order_form.html" class="btn btn-primary mx-2">Process Order</a>
-        <a href="view_all_orders.php" class="btn btn-success mx-2">View all orders</a>
-        <a href="view_order.php" class="btn btn-info">View order</a>
+        <a href="/eCommerce/app/cli/order_form.html" class="btn btn-primary mx-2">Process Order</a>
+        <a href="/eCommerce/app/cli/retrieve_order.html" class="btn btn-info">View order</a>
+        <a href="/eCommerce/app/cli/retrieve_all_orders.html" class="btn btn-success mx-2">View all orders</a>
+        
         
         </div>
         <div class="home-button">
-            <a href="index.html" class="btn btn-outline-secondary">Home</a>
+            <a href="/eCommerce/app/cli/index.html" class="btn btn-outline-secondary mx-4">HomeHTML</a>
         </div>
         
+
+        <button type="button" onclick="retornaMenu()" class="btn btn-dark">HomeJS</button>				
+        <script>
+        function retornaMenu(){
+            // funció perque el botó porti a Home en un clic(funciona com  <a href="">)
+            window.location = '/eCommerce/app/cli/index.html';
+        }
+        </script>
     </header>
     
 </body>

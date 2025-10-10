@@ -10,8 +10,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/eCommerce/app/cli/css/documentation.css">
 </head>
 <body>
-    
+    <div>
+        <h1>Application description</h1>
+        <p>
+            <strong>1. Brief Description of the Application</strong><br>
+            This application is an internal order management tool for the company.
+            It is designed so that employees can create, store, and view customer orders.
+            Each order includes client details, selected products, and automatic price calculation with IVA (21%).
+            The data is stored in a binary file (onlineOrder.db) and can be retrieved for display in the system.
+            Communication between client and server is secured via HTTPS protocol, and the system uses HTML forms on the client side and PHP scripts on the server side. 
+            When the user submits data through a form, it is processed on the server, which returns the results (for example, the total price with IVA) to the web page for display.
+            <br><br>
+            <strong>2. Explanation of the Menu Functionalities and Client-Server Communication</strong><br>
+            Application Home: displays the application name and logo, and allows access to the description or operations menu.
+            Application Description: provides information about the purpose of the project and explains how to use each functionality.
+            Operations Menu: allows the user to select which action to perform (create order, show all orders, or view a specific order).
+            Create Order: opens an HTML form to enter client and product data. When the form is submitted using POST, the PHP server processes the data, calculates the total with VAT, and stores the order in the binary file. The server response with the result is displayed on the web page.
+            Show All Orders: a PHP script reads all orders from the binary file and sends the information to the client to display it in an HTML list format.
+            Show One Order: allows searching for a specific order by its unique code. The form sends the request to the PHP server using GET, which returns the order details for display on the client page.
+        </p>
+         
+            <a href="/eCommerce/app/cli/index.html" class="btn btn-outline-secondary">Home</a>
+            <a href="/eCommerce/app/cli/operations_menu.html" class="btn btn-success mx-2">Operations Menu</a>
+        
+    </div>
 </body>
 </html>
