@@ -49,39 +49,38 @@
       <h4 class="mt-4 mb-3">Product list</h4>
 
       <div class="vstack gap-2 ms-3">
+  <div class="d-flex align-items-center justify-content-between">
+    <label class="d-flex align-items-center gap-2">
+      <input type="checkbox" id="p1" name="products[p1]" value="Spaghetti Bolognese">
+      Spaghetti Bolognese — 12.50 €
+    </label>
+    <input type="number" name="qty[p1]" class="form-control w-25" min="1" value="1">
+  </div>
 
-        <div class="d-flex align-items-center justify-content-between">
-          <div>
-            <input type="checkbox" id="p1" name="products[p1]" value="Spaghetti Bolognese">
-            <label for="p1">Spaghetti Bolognese — 12.50 €</label>
-          </div>
-          <input type="number" name="qty[p1]" class="form-control w-25 ms-3" min="1" value="1">
-        </div>
+  <div class="d-flex align-items-center justify-content-between">
+    <label class="d-flex align-items-center gap-2">
+      <input type="checkbox" id="p2" name="products[p2]" value="Grilled Chicken Salad">
+      Grilled Chicken Salad — 10.00 €
+    </label>
+    <input type="number" name="qty[p2]" class="form-control w-25" min="1" value="1">
+  </div>
 
-        <div class="d-flex align-items-center justify-content-between">
-          <div>
-            <input type="checkbox" id="p2" name="products[p2]" value="Grilled Chicken Salad">
-            <label for="p2">Grilled Chicken Salad — 10.00 €</label>
-          </div>
-          <input type="number" name="qty[p2]" class="form-control w-25 ms-3" min="1" value="1">
-        </div>
+  <div class="d-flex align-items-center justify-content-between">
+    <label class="d-flex align-items-center gap-2">
+      <input type="checkbox" id="p3" name="products[p3]" value="Beef Tacos">
+      Beef Tacos — 9.50 €
+    </label>
+    <input type="number" name="qty[p3]" class="form-control w-25" min="1" value="1">
+  </div>
 
-        <div class="d-flex align-items-center justify-content-between">
-          <div>
-            <input type="checkbox" id="p3" name="products[p3]" value="Beef Tacos">
-            <label for="p3">Beef Tacos — 9.50 €</label>
-          </div>
-          <input type="number" name="qty[p3]" class="form-control w-25 ms-3" min="1" value="1">
-        </div>
-
-        <div class="d-flex align-items-center justify-content-between">
-          <div>
-            <input type="checkbox" id="p4" name="products[p4]" value="Vegetable Stir-Fry">
-            <label for="p4">Vegetable Stir-Fry — 8.00 €</label>
-          </div>
-          <input type="number" name="qty[p4]" class="form-control w-25 ms-3" min="1" value="1">
-        </div>
-      </div>
+  <div class="d-flex align-items-center justify-content-between">
+    <label class="d-flex align-items-center gap-2">
+      <input type="checkbox" id="p4" name="products[p4]" value="Vegetable Stir-Fry">
+      Vegetable Stir-Fry — 8.00 €
+    </label>
+    <input type="number" name="qty[p4]" class="form-control w-25" min="1" value="1">
+  </div>
+</div>
 
       <div class="mt-4 d-flex justify-content-center gap-3">
         <button type="submit" class="btn btn-outline-success">Submit order</button>
@@ -91,56 +90,59 @@
       </div>
         
       <script>
+        
+        
+
         //funció pel botó d'esborrar formulari
         function clearForm() {
           document.querySelector("form").reset();
           alert("Form cleared!");
-        }
-      
+        }     
 
 
         //validació de dades abans d'emviar     
         function validateForm(event) {
-          let message = "";
-
+        let message = "";
 
         const code = document.getElementById("code").value.trim();
-        if (code === "") {
-            message += "You must write an order code.\n";
-          }
+        if (code === "") message += "You must write an order code.\n";
 
         const name = document.getElementById("name").value.trim();
-        if (name === "") {
-            message += "Name cannot be empty.\n";
-          }
+        if (name === "") message += "Name cannot be empty.\n";
 
         const address = document.getElementById("address").value.trim();
-        if (address === "") {
-            message += "Address cannot be empty.\n";
-          }
+        if (address === "") message += "Address cannot be empty.\n";
 
         const phone = document.getElementById("phone_number").value.trim();
-        const phoneRegex = /^[0-9]{9}$/;
-          if (!phoneRegex.test(phone)) {
-            message += "Phone number must have 9 digits.\n";
-          }
+        if (!/^[0-9]{9}$/.test(phone)) message += "Phone number must have 9 digits.\n";
 
-        const email = document.getElementById("email").value.trim();        
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            message += "You must enter a valid email.\n";
-          }
+        const email = document.getElementById("email").value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+          message += "You must enter a valid email.\n";
+
+        // Comprobación de productos
         const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-          if (checkboxes.length === 0) {
-            message += "You must select at least one product.\n";
+        if (checkboxes.length === 0)
+          message += "You must select at least one product.\n";
+
+          // Elimina quantitats de productes que no tenen check
+        const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+        allCheckboxes.forEach(cb => {
+        const qtyInput = cb.closest('div.d-flex').querySelector('input[type="number"]');
+          if (!cb.checked) {
+            qtyInput.disabled = true;
+          } else {
+            qtyInput.disabled = false;
           }
+        });
 
         if (message !== "") {
-            alert(message);
-            event.preventDefault(); // Atura l’enviament
-        }  
-              
+          alert(message);
+          event.preventDefault();
+        }
       }
+              
+      
       </script>
 
     </form>

@@ -25,7 +25,7 @@ $total_IVA = $total * (1 + $IVA/100);
 $db_path = __DIR__ . '/../../onlineOrders/onlineOrders.db';
 
 $order_line = implode(":", [// implode converteix array en cadena text
-    date('Y-m-d H:i:s'),
+
     $code,
     $name,
     $address,
@@ -39,8 +39,8 @@ $order_line = implode(":", [// implode converteix array en cadena text
 file_put_contents($db_path, $order_line, FILE_APPEND);
 
 // Confirmació
-echo "<h2>Orden creada con éxito</h2>";
-echo "<p>Código de la orden: <strong>$code</strong></p>";
-echo "<p>Total (IVA incluido): <strong>" . number_format($total_IVA,2) . " €</strong></p>";
-echo '<p><a href="/eCommerce/app/cli/order_form.html">Nueva orden</a> | <a href="/eCommerce/app/cli/operations_menu.html">Menú</a></p>';
+echo "<h2>Order created successfully</h2>";
+echo "<p>Order code: <strong>$code</strong></p>";
+echo "<p>Total (IVA included): <strong>" . number_format($total_IVA,2) . " €</strong></p>";
+echo '<p><a href="/eCommerce/app/cli/order_form.html">New order</a> | <a href="/eCommerce/app/cli/operations_menu.html">Menu</a></p>';
 ?>
