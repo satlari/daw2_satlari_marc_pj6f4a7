@@ -1,0 +1,36 @@
+body {
+  background-color: #f7f9fb;
+}
+
+h2 {
+  color: #2e3fa3;
+}
+
+.container {
+  max-width: 700px;
+}
+
+.form-control:focus {
+  border-color: #198754;
+  box-shadow: 0 0 4px rgba(25,135,84,0.5);
+}
+
+.btn-warning {
+  color: #000000;
+  background-color: #fdffa4;
+}
+
+.btn-secondary{
+  background-color: #cecece;
+  color: #000000;
+}
+
+.btn-success{
+  background-color: #c3f5ab;
+  color: rgb(9, 63, 45);
+}
+
+.btn-danger{
+  background-color: #c98282;
+  color: rgb(66, 10, 10);
+}

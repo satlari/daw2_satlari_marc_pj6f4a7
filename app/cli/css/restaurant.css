@@ -30,7 +30,7 @@ body {
 }
 
 
-.cover_photo {
+.cover-photo {
   width: 70%;
   height: auto;
   padding-top: 1%;
@@ -38,5 +38,4 @@ body {
   display: flex;
   
 }
-
 

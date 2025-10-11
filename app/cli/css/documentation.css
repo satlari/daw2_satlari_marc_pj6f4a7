@@ -26,3 +26,7 @@ p {
     line-height: 1.6;
 }
 
+.btn-success{
+  background-color: #c3f5ab;
+  color: rgb(9, 63, 45);
+}

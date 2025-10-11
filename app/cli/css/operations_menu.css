@@ -18,3 +18,11 @@ body {
     margin-left: 20px;
     
 }
+.cover-order {
+  width: 70%;
+  height: auto;
+  padding-top: 1%;
+  margin: auto;
+  display: flex;
+  
+}
