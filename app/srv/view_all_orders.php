@@ -34,8 +34,8 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="/eCommerce/app/cli/operations_menu.html" class="btn btn-primary">Back to Menu</a>
-            <a href="/eCommerce/app/cli/index.html" class="btn btn-secondary">Home</a>
+            <a href="../cli/operations_menu.html" class="btn btn-primary">Back to Menu</a>
+            <a href="../cli/index.html" class="btn btn-secondary">Home</a>
         </div>
     </div>
 </body>
