@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>Orders List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
-        rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
-        crossorigin="anonymous">
+        rel="stylesheet" crossorigin="anonymous">
 </head>
 <body class="bg-light">
     <div class="container mt-5">
@@ -13,22 +12,19 @@
 
         <div class="bg-white p-4 shadow rounded">
         <?php
+        require_once 'functions.php';
+
         $db_path = __DIR__ . '/../../onlineOrders/onlineOrders.db';
+        $orders_array = readOrders($db_path);
 
-        if (file_exists($db_path)) {
-            $lines = file($db_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-            if (!empty($lines)) {
-                echo "<pre>"; // mantiene formato de texto
-                foreach ($lines as $line) {
-                    echo htmlspecialchars($line) . "\n";
-                }
-                echo "</pre>";
-            } else {
-                echo "<p class='text-center'>No orders found.</p>";
-            }
+        if (!empty($orders_array)) {
+            orders($orders_array); // totes les ordres
         } else {
-            echo "<p class='text-center'>No orders file found.</p>";
+            if (file_exists($db_path)) {
+                echo "<p class='text-center'>No orders found.</p>";
+            } else {
+                displayNoFileMessage();
+            }
         }
         ?>
         </div>
